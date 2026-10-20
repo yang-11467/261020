@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT TERRA-PULSE // 折射震測野外探勘數位互動平台</title>
+  <meta name="description" content="地物通論折射震測實驗心得報告互動式未來高科技探索平台，整合全套SEG-2真實震測數據、波形收集分析儀、地下波前動態模擬沙盒與野外探勘全紀錄。">
+  
+  <!-- Futuristic Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cyber Scanline Effect Overlay -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==========================================================================
+       TOP HUD NAVIGATION BAR
+       ========================================================================== -->
+  <header class="hud-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="hud-logo">
+          <div class="hex-outer">
+            <div class="hex-inner"></div>
+          </div>
+        </div>
+        <div class="brand-text">
+          <h1>TERRA-PULSE <span class="badge">SYS v4.8</span></h1>
+          <div class="brand-sub">折射震測野外探勘數位分析平台 // REFRACTION SEISMIC SURVEY</div>
+        </div>
+      </div>
+
+      <nav class="hud-nav">
+        <a href="#hero" class="nav-link active">[00] 任務總覽</a>
+        <a href="#survey-record" class="nav-link">[01] 探勘紀錄</a>
+        <a href="#instruments" class="nav-link">[02] 儀器矩陣</a>
+        <a href="#principles" class="nav-link">[03] 物理原理</a>
+        <a href="#gather-explorer" class="nav-link">[04] 波形分析室</a>
+        <a href="#subsurface-sim" class="nav-link">[05] 物理模擬沙盒</a>
+        <a href="#data-insights" class="nav-link">[06] 判讀診斷</a>
+        <a href="#reflection" class="nav-link">[07] 心得感想</a>
+        <a href="#gallery" class="nav-link">[08] 現場圖庫</a>
+      </nav>
+
+      <div class="system-status">
+        <div class="telemetry-indicator">
+          <span class="blink-dot"></span>
+          <span>GEODE NZ24 ONLINE</span>
+        </div>
+        <button id="audioToggleBtn" class="audio-toggle" title="切換音效">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span id="audioStatusText">AUDIO: OFF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO / MISSION COMMAND HUD
+       ========================================================================== -->
+  <section id="hero" class="hero-hud">
+    <div class="hero-panel">
+      <div class="cyber-corner corner-tl"></div>
+      <div class="cyber-corner corner-tr"></div>
+      <div class="cyber-corner corner-bl"></div>
+      <div class="cyber-corner corner-br"></div>
+
+      <div class="hero-grid">
+        <div class="hero-main-content">
+          <div class="mission-tagline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            MISSION SPEC // 地球物理通論實習報告
+          </div>
+          <h2 class="hero-title">
+            折射震測實驗<br>
+            <span class="gradient-text">數位全息互動探索中心</span>
+          </h2>
+          <p class="hero-desc">
+            本系統完整解構<strong>臺北市立大學圖書館後方</strong>之折射震測實習成果。全站收錄真實 SEG-2 震測波形數據庫、24 通道受波器訊號即時解碼器、地下臨界折射波傳播動態模擬沙盒，以及野外儀器高解析全息檢視。
+          </p>
+
+          <div class="meta-badges">
+            <div class="meta-badge">
+              <div class="badge-label">探勘者 / 學員</div>
+              <div class="badge-val">林柏揚</div>
+            </div>
+            <div class="meta-badge">
+              <div class="badge-label">系所年級</div>
+              <div class="badge-val">地生二</div>
+            </div>
+            <div class="meta-badge">
+              <div class="badge-label">學號代碼</div>
+              <div class="badge-val">U11410015</div>
+            </div>
+            <div class="meta-badge">
+              <div class="badge-label">實習日期</div>
+              <div class="badge-val">2026/10/14</div>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="#gather-explorer" class="cyber-btn btn-cyan">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              進入真實波形分析室
+            </a>
+            <a href="#subsurface-sim" class="cyber-btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              啟動地下折射模擬沙盒
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-radar-widget">
+          <div class="radar-header">
+            <span class="radar-title">// LIVE SENSOR MATRIX RADAR</span>
+            <span>24 CHANNELS ACTIVE</span>
+          </div>
+          <div class="radar-display">
+            <canvas id="heroRadarCanvas"></canvas>
+          </div>
+          <div class="telemetry-feed">
+            <div class="telemetry-row">
+              <span class="k">SURVEY LINE:</span>
+              <span class="v">202610_UTELS</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="k">LOCATION:</span>
+              <span class="v">UT LIBRARY NORTH</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="k">TOTAL SPREAD:</span>
+              <span class="v">46.0 METERS</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="k">SAMPLE RATE:</span>
+              <span class="v">0.25 ms (4kHz)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 1: FIELD SURVEY & PARAMETERS
+       ========================================================================== -->
+  <section id="survey-record" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-01] FIELD RECONNAISSANCE & SPREAD PARAMETERS</div>
+      <h3 class="section-title">野外探勘測區與施測參數</h3>
+      <p class="section-subtitle">解密野外紀錄表原始幾何佈設、環境條件與 12 處敲擊震源施測序列。</p>
+    </div>
+
+    <div class="field-record-grid">
+      <div class="hud-card">
+        <div class="hud-card-header">
+          <div class="hud-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            探勘規格指標矩陣
+          </div>
+          <span class="status-chip success">PASSED</span>
+        </div>
+
+        <div class="record-metrics-matrix">
+          <div class="metric-box">
+            <div class="metric-label">測區地點</div>
+            <div class="metric-value">北市大圖書館後方</div>
+            <div class="metric-sub">地表微起伏綠地林蔭道</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">測線名稱與方位</div>
+            <div class="metric-value">202610_UTELS</div>
+            <div class="metric-sub">由北向南 (N → S) 直線佈設</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">受波器站距</div>
+            <div class="metric-value">2.0 米</div>
+            <div class="metric-sub">24 測站 / 覆蓋 0m 至 46m</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">震源敲擊間距</div>
+            <div class="metric-value">4.0 米</div>
+            <div class="metric-sub">12 處敲擊點 (0m ~ 44m)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">取樣時間與長度</div>
+            <div class="metric-value">0.25 ms / 0.5 s</div>
+            <div class="metric-sub">4000 Hz / 2000 取樣點</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">記錄員與團隊</div>
+            <div class="metric-value">小郭 / 20 人</div>
+            <div class="metric-sub">施測日：115/10/07 (晴天)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-card">
+        <div class="hud-card-header">
+          <div class="hud-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            12 處震源敲擊歷程終端 (點擊切換波形)
+          </div>
+          <span class="status-chip author">林柏揚負責 0m 炸點</span>
+        </div>
+
+        <div class="shot-table-container">
+          <table class="cyber-table">
+            <thead>
+              <tr>
+                <th>檔名編號</th>
+                <th>炸點位置</th>
+                <th>敲擊坐標</th>
+                <th>受波站範圍</th>
+                <th>施測狀態</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-shot-id="101" class="active-shot">
+                <td>FILE-01</td>
+                <td>101</td>
+                <td>0 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip author">林柏揚責任點</span></td>
+              </tr>
+              <tr data-shot-id="102">
+                <td>FILE-02</td>
+                <td>102</td>
+                <td>4 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="103">
+                <td>FILE-03</td>
+                <td>103</td>
+                <td>8 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="104">
+                <td>FILE-04</td>
+                <td>104</td>
+                <td>12 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="105">
+                <td>FILE-05</td>
+                <td>105</td>
+                <td>16 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="106">
+                <td>FILE-06</td>
+                <td>106</td>
+                <td>20 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="107">
+                <td>FILE-07</td>
+                <td>107</td>
+                <td>24 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="108">
+                <td>FILE-08</td>
+                <td>108</td>
+                <td>28 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="109">
+                <td>FILE-09</td>
+                <td>109</td>
+                <td>32 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="110">
+                <td>FILE-10</td>
+                <td>110</td>
+                <td>36 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="111">
+                <td>FILE-11</td>
+                <td>111</td>
+                <td>40 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+              <tr data-shot-id="112">
+                <td>FILE-12</td>
+                <td>112</td>
+                <td>44 m</td>
+                <td>Ch1 ~ Ch24 (0 - 46m)</td>
+                <td><span class="status-chip success">正常完成</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 2: INSTRUMENT MATRIX
+       ========================================================================== -->
+  <section id="instruments" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-02] INSTRUMENTATION HARDWARE SUITE</div>
+      <h3 class="section-title">六大核心實驗儀器矩陣</h3>
+      <p class="section-subtitle">點擊卡片可放大檢視高解析度野外實拍影像與硬體規格註解。</p>
+    </div>
+
+    <div class="instrument-grid">
+      <!-- 1. 受波器 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/geophone_bundle.jpg" alt="受波器總成" loading="lazy">
+          <div class="img-hud-overlay">GEO-ARRAY // 24 CH</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// TRANSDUCER MATRIX</div>
+          <h4 class="card-title">受波器 (Geophones)</h4>
+          <p class="card-text">
+            單一垂直分量受波器接收單方向振動，三軸組合則可接收三維空間震波。內部採用「磁鐵與懸吊彈簧線圈系統」，根據法拉第電磁感應原理，將地表機械動能轉換為微伏級連續電壓訊號。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">垂直速度感測</span>
+            <span class="spec-pill">彈簧磁電轉換</span>
+            <span class="spec-pill">金屬尖釘接地固定</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Geode 震測儀 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/geode_unit.jpg" alt="Geometrics Geode 震測儀" loading="lazy">
+          <div class="img-hud-overlay">ACQUISITION // GEOMETRICS</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// 24-CHANNEL SEISMOGRAPH</div>
+          <h4 class="card-title">Geode 震測儀</h4>
+          <p class="card-text">
+            可同時接收 24 個通道的高精度地震儀。機身後方具備三個專用航太接頭：左側接 24 通道多芯受波器電纜、中央接榔頭壓電觸發感應器（引爆同步線）、右側接傳輸數位資料至控制電腦之網路線。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">24-bit 24 通道 A/D</span>
+            <span class="spec-pill">三接口航太端子</span>
+            <span class="spec-pill">全天候強固箱體</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 皮尺 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/measuring_tape.png" alt="100米專業皮尺" loading="lazy">
+          <div class="img-hud-overlay">GEOMETRY // 100M SURVEY</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// SPATIAL CALIBRATION</div>
+          <h4 class="card-title">專業量測皮尺</h4>
+          <p class="card-text">
+            精確標定野外測線基線、受波器間距 (2m) 與震源敲擊點 (4m) 之絕對空間幾何座標。端點設有尖銳金屬地錨，可深插泥土中繃緊皮尺，確保測距誤差降至毫米級。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">100 米長程規格</span>
+            <span class="spec-pill">金屬地錨固定插針</span>
+            <span class="spec-pill">幾何座標基準線</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 榔頭與感應器 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/hammer_sensor.jpg" alt="榔頭與觸發感應器" loading="lazy">
+          <div class="img-hud-overlay">SOURCE // SLEDGEHAMMER</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// SEISMIC EXCITATION</div>
+          <h4 class="card-title">敲擊榔頭與壓電觸發器</h4>
+          <p class="card-text">
+            以大磅數鐵鎚重擊鋼質墊板產生人工 P 波與 S 波。木柄上固定之壓電觸發感應器在接觸墊板瞬間產生極短電脈衝，同步傳輸至 Geode 標記絕對零秒 ($t_0$)，作為精確走時逆推之時間原點。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">重型鐵鎚 + 鋼質墊板</span>
+            <span class="spec-pill">壓電微秒級同步觸發</span>
+            <span class="spec-pill">外接 12V 電瓶供電</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 探勘紀錄表 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/record_sheet.jpg" alt="野外探勘紀錄紙" loading="lazy">
+          <div class="img-hud-overlay">FIELD LOG // MANUAL DATA</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// FIELD ARCHIVE</div>
+          <h4 class="card-title">野外探勘紀錄表</h4>
+          <p class="card-text">
+            完整登記測區（北市大圖書館後方）、測線（202610_UTELS）、晴天、人員配置（小郭記錄員、20人組員）、測站間距 (2m)、取樣率 (0.25ms)、濾波設定 (NO) 與 12 處檔案編號之現場手寫履歷表。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">手寫原始現場紀錄</span>
+            <span class="spec-pill">時空幾何座標對照</span>
+            <span class="spec-pill">檔案編號 01~12 履歷</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 野外強固筆電 -->
+      <div class="instrument-card">
+        <div class="card-img-wrapper">
+          <img src="assets/field_laptop.jpg" alt="野外強固型電腦" loading="lazy">
+          <div class="img-hud-overlay">COMMAND PC // TOUGHBOOK</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">// REAL-TIME ACQUISITION</div>
+          <h4 class="card-title">野外強固控制電腦</h4>
+          <p class="card-text">
+            透過工業網路線即時接收 Geode 回傳之 24 通道數位震波資料。現場即時繪製 Wiggle / Variable Area 波形圖，檢驗震源敲擊品質與訊噪比，並即時匯出儲存為 SEG-2 與 SEG-Y 標準地震格式。
+          </p>
+          <div class="spec-pills">
+            <span class="spec-pill">即時波形可視化</span>
+            <span class="spec-pill">SEG-2 原始資料儲存</span>
+            <span class="spec-pill">野外強固抗震機體</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 3: GEOPHYSICAL WORKFLOW & PRINCIPLES
+       ========================================================================== -->
+  <section id="principles" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-03] UNDERLYING GEOPHYSICAL MECHANICS</div>
+      <h3 class="section-title">折射震測運作原理與六大作業流程</h3>
+      <p class="section-subtitle">從震波激發、電磁感應轉換到多重覆蓋疊加之標準野外地球物理探勘工序。</p>
+    </div>
+
+    <div class="workflow-pipeline">
+      <!-- Step 1 -->
+      <div class="pipeline-node">
+        <div class="node-num">01</div>
+        <h4 class="node-title">震波激發與時間同步</h4>
+        <p class="node-desc">
+          使用鐵鎚敲擊地表鋼墊板產生人工震波。安裝於鐵鎚木柄上之感應器在撞擊瞬間閉合，向 Geode 發出 $t=0$ 微秒級觸發訊號，確保計時原點零誤差。
+        </p>
+        <div class="physics-formula-box">
+          TIME SYNC: t₀ = 0.000 ms
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="pipeline-node">
+        <div class="node-num">02</div>
+        <h4 class="node-title">震波傳播偵測轉換</h4>
+        <p class="node-desc">
+          震波傳至受波器時，外殼隨地表振動，內部懸吊線圈因慣性相對於磁鐵產生位移，依據法拉第感應定律，機械動能被轉化為可連續量測之感應電動勢。
+        </p>
+        <div class="physics-formula-box">
+          EMF: ε = -N (dΦB / dt)
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="pipeline-node">
+        <div class="node-num">03</div>
+        <h4 class="node-title">空間幾何格網佈設</h4>
+        <p class="node-desc">
+          藉由 100m 皮尺於地表精確佈設測線。受波器以 2m 等距緊密插地，震源點每隔 4m 設置一個，確保空間座標 $x$ 與記錄表編號嚴格對應。
+        </p>
+        <div class="physics-formula-box">
+          Δx_rec = 2m | Δx_shot = 4m
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="pipeline-node">
+        <div class="node-num">04</div>
+        <h4 class="node-title">雜訊屏蔽與垂直疊加</h4>
+        <p class="node-desc">
+          單一人工敲擊能量有限，藉由在同一測點連續敲擊多次（Stacking），隨機環境微震（車流、風聲）相位隨機抵消，人工震波訊號同相疊加，大幅提振訊噪比。
+        </p>
+        <div class="physics-formula-box">
+          SNR_gain = √N_stacks
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="pipeline-node">
+        <div class="node-num">05</div>
+        <h4 class="node-title">訊號收集與即時數位化</h4>
+        <p class="node-desc">
+          Geode 24 通道 A/D 轉換器以 0.25ms 間隔高速量化類比電壓，透過 TCP/IP 網路線傳輸至控制筆電，即時渲染 Wiggle 波形並儲存 SEG-2 數據庫。
+        </p>
+        <div class="physics-formula-box">
+          fs = 4000 Hz | 24-bit ADC
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="pipeline-node">
+        <div class="node-num">06</div>
+        <h4 class="node-title">多震源重疊反演觀測</h4>
+        <p class="node-desc">
+          每隔 4m 移動敲擊點，覆蓋整條 46m 測線。正向（Forward）與反向（Reverse）走時曲線比對，可有效辨識並消除地層傾斜（Dipping Layer）所造成的視速度偏差。
+        </p>
+        <div class="physics-formula-box">
+          Vd = V1 / sin(θc ± α)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 4: INTERACTIVE SEISMIC TRACE GATHER EXPLORER
+       ========================================================================== -->
+  <section id="gather-explorer" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-04] INTERACTIVE SEISMIC TRACE LAB</div>
+      <h3 class="section-title">真實震測波形圖互動探測室</h3>
+      <p class="section-subtitle">加載實習現場全套 12 筆 SEG-2 真實震測資料，支援波形放大、時間拉伸與初達波標註。</p>
+    </div>
+
+    <div class="gather-explorer-layout">
+      <!-- Left Controls HUD -->
+      <div class="gather-control-panel">
+        <div class="hud-card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          觀測儀控制台
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">選擇施測記錄 (Shot Gather)</label>
+          <select id="shotSelect" class="cyber-select">
+            <option value="0">File 101 (Shot 0m) - 林柏揚敲擊</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>增益放大倍率 (Gain)</span>
+            <span id="gainValue" class="val-display">3.5x</span>
+          </label>
+          <input type="range" id="gainSlider" class="cyber-slider" min="0.5" max="10.0" step="0.1" value="3.5">
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>時間軸觀測視窗 (Time Zoom)</span>
+            <span id="timeZoomValue" class="val-display">100 ms</span>
+          </label>
+          <input type="range" id="timeZoomSlider" class="cyber-slider" min="40" max="150" step="5" value="100">
+        </div>
+
+        <div class="control-group" style="gap: 0.8rem; margin-top: 0.5rem;">
+          <label class="cyber-toggle-label">
+            <input type="checkbox" id="vaToggle" checked>
+            <span>正波面積塗黑 (Variable Area VA)</span>
+          </label>
+
+          <label class="cyber-toggle-label">
+            <input type="checkbox" id="pickLinesToggle" checked>
+            <span>顯示初達波走時線 (直達波紅 / 折射波藍)</span>
+          </label>
+
+          <label class="cyber-toggle-label">
+            <input type="checkbox" id="compareOverlayToggle">
+            <span>疊合原作者心得報告標註原圖</span>
+          </label>
+        </div>
+
+        <div class="metric-box" style="margin-top: 1rem;">
+          <div class="metric-label">當前震源座標</div>
+          <div class="metric-value" id="currentShotPos">0.0 米</div>
+          <div class="metric-sub">受波器涵蓋：0m 至 46m (24 測站)</div>
+        </div>
+      </div>
+
+      <!-- Right Display Canvas HUD -->
+      <div class="gather-display-panel">
+        <div class="gather-hud-bar">
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cyan-core);">
+            // DISPLAY: WIGGLE-TRACE VARIABLE AREA (SEG-2 STANDARD)
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">
+            DT = 0.25ms | CHANNELS = 24 | TRACES = 24
+          </div>
+        </div>
+
+        <div class="canvas-container">
+          <canvas id="seismicCanvas"></canvas>
+          <div id="traceTooltip" class="canvas-tooltip"></div>
+        </div>
+
+        <div class="gather-legend">
+          <div class="legend-item">
+            <div class="legend-bar direct"></div>
+            <span>直達波 (Direct Wave: 4m, 8m 先到)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar refract"></div>
+            <span>折射波 (Head Wave: ≥12m 超越直達波)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar va"></div>
+            <span>正振幅同相軸 (Positive Lobe VA)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 5: 2D SUBSURFACE WAVEFRONT & RAYPATH SIMULATOR
+       ========================================================================== -->
+  <section id="subsurface-sim" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-05] 2D SUBSURFACE RAYPATH & WAVEFRONT SIMULATOR</div>
+      <h3 class="section-title">地下折射二維波前動態模擬沙盒</h3>
+      <p class="section-subtitle">基於惠更斯原理與司乃耳定律，即時動態模擬地底頭波（Head Wave）之激發與滑行折射。</p>
+    </div>
+
+    <div class="simulator-layout">
+      <!-- Left Viewport HUD -->
+      <div class="sim-viewport-card">
+        <div class="gather-hud-bar">
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cyan-core);">
+            // REAL-TIME WAVE EQUATION RESOLUTION (2D CROSS-SECTION)
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">
+            CRITICAL REFRACTION INTERFACE (SNELL'S LAW)
+          </div>
+        </div>
+
+        <div class="sim-canvas-box">
+          <canvas id="raypathCanvas"></canvas>
+          <div class="sim-hud-overlay">
+            <div>PROPAGATION TIME: <span id="simTimeDisplay" class="sim-time">0.0 ms</span></div>
+          </div>
+        </div>
+
+        <div class="gather-legend" style="margin-top: 1rem;">
+          <div class="legend-item">
+            <div class="legend-bar direct"></div>
+            <span>表土層直達波前 (半徑 r = V₁·t)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar refract"></div>
+            <span>基岩界面臨界折射頭波 (圓錐波前 θ = θc)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Control & Telemetry Panel -->
+      <div class="sim-control-panel">
+        <button id="fireShotBtn" class="strike-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          激發人工震波 (FIRE SHOT)
+        </button>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>表土層速度 (V₁)</span>
+            <span id="simV1Val" class="val-display">380 m/s</span>
+          </label>
+          <input type="range" id="simV1Slider" class="cyber-slider" min="200" max="600" step="10" value="380">
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>基岩層速度 (V₂)</span>
+            <span id="simV2Val" class="val-display">1750 m/s</span>
+          </label>
+          <input type="range" id="simV2Slider" class="cyber-slider" min="1000" max="3000" step="50" value="1750">
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>基岩界面深度 (h)</span>
+            <span id="simHVal" class="val-display">3.5 m</span>
+          </label>
+          <input type="range" id="simHSlider" class="cyber-slider" min="1.5" max="8.0" step="0.2" value="3.5">
+        </div>
+
+        <div class="calc-telemetry-box">
+          <div style="font-family: var(--font-hud); font-size: 0.85rem; color: var(--cyan-core); margin-bottom: 0.2rem;">
+            // 即時反演物理常數
+          </div>
+          <div class="calc-row">
+            <span class="lbl">臨界角 (θc)</span>
+            <span id="calcCritAngle" class="res">12.5°</span>
+          </div>
+          <div class="calc-row">
+            <span class="lbl">臨界距離 (Xc)</span>
+            <span id="calcCritDist" class="res">1.55 m</span>
+          </div>
+          <div class="calc-row">
+            <span class="lbl">交叉距離 (Xcross)</span>
+            <span id="calcCrossDist" class="res">10.22 m</span>
+          </div>
+          <div class="calc-row">
+            <span class="lbl">截距時間 (ti)</span>
+            <span id="calcInterceptTime" class="res">28.4 ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 6: DATA INTERPRETATION & PHYSICS DIAGNOSTICS
+       ========================================================================== -->
+  <section id="data-insights" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-06] INTERPRETATION DIAGNOSTICS & FIELD PHYSICS</div>
+      <h3 class="section-title">實習數據分析與物理判讀結論</h3>
+      <p class="section-subtitle">報告中三大核心地物推論：走時初達波判讀、12 dB 雜訊門檻與視速度穩定度分析。</p>
+    </div>
+
+    <div class="insights-grid">
+      <!-- Card 1 -->
+      <div class="insight-card">
+        <div class="insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <h4 class="insight-title">1. 初達波判讀與折射空窗期</h4>
+        <p class="insight-body">
+          林柏揚負責之 0m 震源波形圖中：<strong>紅色標示為直達波</strong>，在 4m 與 8m 偵測處最先到達；從 <strong>12m 處開始出現另一條不同斜率的折射波（藍色標示）優先抵達</strong>。<br><br>
+          在 4m、8m 處皆無折射波，明確佐證震波存在臨界入射角 $\theta_c$，導致折射波滑行回傳地表前產生一段物理觀測上的<strong>「空窗期 / 盲區 (Blind Zone)」</strong>。
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="insight-card">
+        <div class="insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </div>
+        <h4 class="insight-title">2. 12 dB 訊號門檻與 30m 衰減</h4>
+        <p class="insight-body">
+          人工榔頭敲擊能量有限，隨幾何擴散與黏滯吸能衰減，約在 <strong>30m 以外人工震波即沒入環境雜訊</strong>難以辨識初達。<br><br>
+          因此實驗團隊<strong>將 12 dB 訂為有效敲擊訊號與環境雜訊之分界門檻</strong>。若特定通道訊號元小於 12 dB，需於資料庫中剔除該筆無效記錄以確保後續反演精度。
+        </p>
+        <div class="threshold-gauge">
+          <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem;">
+            <span>AMBIENT NOISE (&lt;12dB)</span>
+            <span style="color:var(--emerald-core)">VALID SIGNAL (≥12dB)</span>
+          </div>
+          <div class="gauge-bar-bg">
+            <div class="gauge-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="insight-card">
+        <div class="insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </div>
+        <h4 class="insight-title">3. 視速度變動率與穩定度檢驗</h4>
+        <p class="insight-body">
+          電腦在自動處理解析資料時，會根據內建演算法設定參數擬合走時，極易受近地表微地形或局部風化不均所干擾。<br><br>
+          故在資料後處理時，<strong>必須透過觀察鄰近測站之「視速度 (Apparent Velocity $V_a = \Delta x / \Delta t$)」變動率</strong>，進行連續性檢驗，以正確研判真實地下地層的均質性與介面真實傾角。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 7: STUDENT REFLECTION (林柏揚心得感想)
+       ========================================================================== -->
+  <section id="reflection" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-07] EXPERIMENTAL REFLECTIONS & LEARNING ACQUISITION</div>
+      <h3 class="section-title">心得感想與探勘學習歷程</h3>
+      <p class="section-subtitle">學生 林柏揚（地生二 / U11410015）之完整野外實作心得與觀念通透之歷程。</p>
+    </div>
+
+    <div class="reflection-container">
+      <div class="student-profile-header">
+        <div class="avatar-hex">揚</div>
+        <div class="student-info">
+          <h3>林柏揚 // 地球環境暨生物資源學系二年級</h3>
+          <p>學號：U11410015 | 實習課程：地物通論 | 報告撰寫完成日：2026/10/14</p>
+        </div>
+      </div>
+
+      <div class="reflection-paragraphs">
+        <p class="quote-highlight">
+          「高中地科課時雖曾學習過震波概念，但當時大多停留於理論理解與背誦。進入大學後，透過這門課程首次接觸實體儀器，並將課堂所學真正應用於野外實驗中，非常感謝老師提供這樣的實作機會。」
+        </p>
+
+        <p>
+          雖然初期操作仍然有些生疏，敲擊出的人工震波品質也尚有改善空間，但當老師在電腦螢幕上展現出我們親手記錄到的震波資料時，<strong>那份從實際操作、數據收集到即時呈現結果的成就感，令我印象深刻。</strong>
+        </p>
+
+        <p>
+          在資料處理與報告撰寫階段，由於課堂時間有限，最初我對震波走時的計算、繪圖邏輯，以及環境雜訊影響、視速度定義與模型穩定度等概念尚未完全通透。
+        </p>
+
+        <p>
+          然而，透過後續整理數據與撰寫報告的過程，<strong>我得以逐一釐清各項專有名詞的物理意義，並建構出更完整的實驗模型觀念。</strong>這次經驗不僅加深了我對折射震測的理解，也體會到理論與實務結合的價值。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODULE 8: FIELD PHOTO GALLERY & LIGHTBOX
+       ========================================================================== -->
+  <section id="gallery" class="section-wrapper">
+    <div class="section-hud-header">
+      <div class="section-code">[SEC-08] EXPEDITION PHOTO REPOSITORY</div>
+      <h3 class="section-title">野外探勘現場全景圖庫</h3>
+      <p class="section-subtitle">點擊照片可調用 HUD 高解析全息燈箱，查看現場施測細節與高畫質原圖。</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" data-title="測線沿林蔭道全景佈設" data-desc="於北市大圖書館後方林蔭路旁，拉設 100m 皮尺作為 0~46m 測線基線，每 2m 緊密佈設受波器。">
+        <img src="assets/survey_line.jpg" alt="測線沿林蔭道全景佈設" loading="lazy">
+        <div class="gallery-caption">測線沿林蔭道佈設全景 (0~46m)</div>
+      </div>
+
+      <div class="gallery-item" data-title="老師野外敲擊技巧示範" data-desc="指導老師親自示範大榔頭重擊鋼質墊板之敲擊施力與感應器觸發要領。">
+        <img src="assets/instructor_demo.jpg" alt="老師野外敲擊示範" loading="lazy">
+        <div class="gallery-caption">老師親自示範重鎚敲擊技巧</div>
+      </div>
+
+      <div class="gallery-item" data-title="林柏揚進行人工震波敲擊施測" data-desc="學員於 0m 炸點親手揮擊鐵鎚，衝擊地表墊板產生震波，周圍組員屏息觀測。">
+        <img src="assets/hammer_action.png" alt="學員敲擊施測現場" loading="lazy">
+        <div class="gallery-caption">學員親自敲擊施測現場實景</div>
+      </div>
+
+      <div class="gallery-item" data-title="Geode 震測儀三大接口連接實況" data-desc="特寫展示 Geode 後方 24-ch 受波器接頭、台電炮線引爆感應線以及控制網路線之穩固對接。">
+        <img src="assets/geode_ports.jpg" alt="Geode 接口連接實況" loading="lazy">
+        <div class="gallery-caption">Geode 震測儀三航太接口實拍</div>
+      </div>
+
+      <div class="gallery-item" data-title="野外電腦實時波形檢測" data-desc="Panasonic Toughbook 螢幕即時顯示 24 通道波形與初達脈衝，驗證疊加品質。">
+        <img src="assets/field_laptop.jpg" alt="電腦即時波形呈現" loading="lazy">
+        <div class="gallery-caption">野外控制筆電即時波形呈現</div>
+      </div>
+
+      <div class="gallery-item" data-title="折射震測走時標註解析圖" data-desc="原報告核心判讀圖：紅線直達波 (V1) 在 4m/8m 先到；藍線折射波 (V2) 在 ≥12m 處優先抵達。">
+        <img src="assets/shot101_annotated.jpg" alt="折射震測初達波標註原圖" loading="lazy">
+        <div class="gallery-caption">折射初達波紅藍雙線標註原圖</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODAL LIGHTBOX
+       ========================================================================== -->
+  <div id="lightboxModal" class="lightbox-modal">
+    <div class="lightbox-content">
+      <div id="lightboxClose" class="lightbox-close">&times;</div>
+      <div class="lightbox-img-box">
+        <img id="lightboxImg" src="" alt="高解析放大檢視">
+      </div>
+      <div class="lightbox-details">
+        <h4 id="lightboxTitle">儀器或現場照片</h4>
+        <p id="lightboxDesc">照片詳細說明與地物探勘備註。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="hud-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">PROJECT TERRA-PULSE // 折射震測地球物理野外實習數位平台</div>
+        <div class="footer-sub">臺北市立大學 地球環境暨生物資源學系 | 地物通論實驗心得報告</div>
+      </div>
+      <div class="footer-credits">
+        <div>報告作者：林柏揚 (U11410015) // 地生二</div>
+        <div style="color: var(--cyan-core); margin-top: 0.25rem;">
+          SYSTEM STACK: HTML5 · VANILLA CSS · WEB AUDIO API · CANVAS 2D · SEG-2 DATASET
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SEG-2 Seismic Shot Dataset (Offline & CORS-free) -->
+  <script src="assets/seismic_data.js"></script>
+  <!-- Application Mechanics -->
+  <script src="script.js"></script>
+</body>
+</html>
